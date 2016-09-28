@@ -17,6 +17,8 @@ class ScrollingHeaderTableViewController: UIViewController {
     var navigationBarHeightConstraint: NSLayoutConstraint!
     var headerImageViewHeightConstraint: NSLayoutConstraint!
     
+    var titleLabelOffsetThreshold = CGFloat(44)
+    
     var statusBarHeight: CGFloat {
         return UIApplication.shared.statusBarFrame.height
     }
@@ -68,7 +70,13 @@ class ScrollingHeaderTableViewController: UIViewController {
         navigationBarHeightConstraint.constant = navbarheight
         headerImageViewHeightConstraint.constant = imageViewHeight
         
+        let oldInset = tableView.contentInset.top
         tableView.contentInset = UIEdgeInsets(top: imageViewHeight, left: 0, bottom: bottomLayoutGuide.length, right: 0)
+        
+        if oldInset == 0 {
+            tableView.contentOffset = CGPoint(x: 0, y: -imageViewHeight)
+        }
+        
     }
     
     func backButtonPressed() {
@@ -80,7 +88,7 @@ class ScrollingHeaderTableViewController: UIViewController {
     }
     
     func tableViewOffsetDidChange() {
-        
+        scrollingNavigationBar.setTitleLabelOffset(offset: tableView.contentOffset.y)
     }
 
 }

@@ -21,7 +21,9 @@ class TestViewController: ScrollingHeaderTableViewController {
 }
 
 extension TestViewController: UITableViewDelegate {
-    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        super.tableViewOffsetDidChange()
+    }
 }
 
 extension TestViewController: UITableViewDataSource {
