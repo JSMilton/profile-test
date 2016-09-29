@@ -16,13 +16,24 @@ class TestViewController: ScrollingHeaderTableViewController {
         tableView.dataSource = self
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        setHeaderImageViewImage(UIImage(named: "bill-gates"))
+        setNavbarTitle("Awesome title")
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        if tableView.tableHeaderView == nil {
+            tableView.tableHeaderView = TestHeaderView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100))
+            setTitleAppearanceContentOffset(50)
+        }
     }
 
 }
 
 extension TestViewController: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        super.tableViewOffsetDidChange()
+        tableViewOffsetDidChange()
     }
 }
 

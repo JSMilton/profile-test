@@ -15,17 +15,9 @@ class ScrollingHeaderNavigationBar: UIView {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet private weak var titleLabelBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var backgroundView: UIView!
     
     private var titleLabelMaxOffset = CGFloat(44)
-    
-    override var backgroundColor: UIColor? {
-        set {
-            subviews.first?.backgroundColor = newValue
-        }
-        get {
-            return subviews.first?.backgroundColor
-        }
-    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -48,6 +40,9 @@ class ScrollingHeaderNavigationBar: UIView {
         view.frame = bounds
         view.autoresizingMask = [ .flexibleWidth, .flexibleHeight ]
         
+        backgroundColor = .clear
+        view.backgroundColor = .clear
+        
         layoutIfNeeded()
     }
     
@@ -56,11 +51,13 @@ class ScrollingHeaderNavigationBar: UIView {
         titleLabelMaxOffset = titleLabel.frame.height
     }
     
-    func setTitleLabelOffset(offset: CGFloat) {
+    func updateTitlePositionAndBackgroundAlpha(withOffset offset: CGFloat) {
         var value = max(offset, 0)
         value = min(value, titleLabelMaxOffset)
         
         titleLabelBottomConstraint.constant = value - titleLabelMaxOffset
+        backgroundView.alpha = value / titleLabelMaxOffset
     }
     
 }
+ 

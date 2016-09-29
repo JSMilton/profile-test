@@ -9,6 +9,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScrollingHeaderNavigationBar" customModule="profile_test" customModuleProvider="target">
             <connections>
                 <outlet property="backButton" destination="fMF-ab-Rfa" id="WKK-xV-Jgx"/>
+                <outlet property="backgroundView" destination="sPE-85-phx" id="xCh-qM-FF6"/>
                 <outlet property="settingsButton" destination="l8k-nD-FcL" id="gza-wK-L6z"/>
                 <outlet property="titleLabel" destination="1c8-rS-XY2" id="PPq-fC-5yN"/>
                 <outlet property="titleLabelBottomConstraint" destination="epu-8k-1ZP" id="0MV-LD-Lkt"/>
@@ -19,6 +20,9 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sPE-85-phx" userLabel="Background View">
+                    <color key="backgroundColor" red="0.34509803919999998" green="0.56862745100000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1c8-rS-XY2">
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="zRG-qk-xSA"/>
@@ -42,18 +46,22 @@
                     <state key="normal" image="settings-icon"/>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.4145868288590604" green="0.64972210570469791" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="sPE-85-phx" secondAttribute="trailing" id="0zh-Nh-ejS"/>
+                <constraint firstItem="sPE-85-phx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="IK8-3b-HsZ"/>
                 <constraint firstAttribute="bottom" secondItem="fMF-ab-Rfa" secondAttribute="bottom" id="Ocy-hM-8cn"/>
                 <constraint firstAttribute="trailing" secondItem="l8k-nD-FcL" secondAttribute="trailing" id="QL2-2h-A8o"/>
+                <constraint firstItem="sPE-85-phx" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="SBS-rb-qzs"/>
+                <constraint firstAttribute="bottom" secondItem="sPE-85-phx" secondAttribute="bottom" id="cj5-K4-IJi"/>
                 <constraint firstAttribute="bottom" secondItem="l8k-nD-FcL" secondAttribute="bottom" id="dSN-tC-FlW"/>
-                <constraint firstAttribute="bottom" secondItem="1c8-rS-XY2" secondAttribute="bottom" id="epu-8k-1ZP"/>
+                <constraint firstAttribute="bottom" secondItem="1c8-rS-XY2" secondAttribute="bottom" constant="-44" id="epu-8k-1ZP"/>
                 <constraint firstItem="fMF-ab-Rfa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="kVA-Az-qXW"/>
                 <constraint firstItem="l8k-nD-FcL" firstAttribute="leading" secondItem="1c8-rS-XY2" secondAttribute="trailing" id="xyv-Je-nK6"/>
                 <constraint firstItem="1c8-rS-XY2" firstAttribute="leading" secondItem="fMF-ab-Rfa" secondAttribute="trailing" id="zlv-kV-05U"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-501" y="-271"/>
+            <point key="canvasLocation" x="-501.5" y="-271"/>
         </view>
     </objects>
     <resources>

@@ -9,28 +9,30 @@
 import UIKit
 import PureLayout
 
+fileprivate let kHeaderScaleDamping = CGFloat(30)
+
 class ScrollingHeaderTableViewController: UIViewController {
     
     let tableView = UITableView()
-    var headerImageView = UIImageView()
-    var scrollingNavigationBar = ScrollingHeaderNavigationBar()
-    var navigationBarHeightConstraint: NSLayoutConstraint!
-    var headerImageViewHeightConstraint: NSLayoutConstraint!
+    private var headerImageView = UIImageView()
+    private var visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+    private var scrollingNavigationBar = ScrollingHeaderNavigationBar()
+    private var navigationBarHeightConstraint: NSLayoutConstraint!
+    private var headerImageViewHeightConstraint: NSLayoutConstraint!
     
-    var titleLabelOffsetThreshold = CGFloat(44)
-    
-    var statusBarHeight: CGFloat {
+    private var statusBarHeight: CGFloat {
         return UIApplication.shared.statusBarFrame.height
     }
     
-    var navigationBarHeight: CGFloat {
+    private var navigationBarHeight: CGFloat {
         return navigationController?.navigationBar.frame.height ?? 0.0
     }
+    
+    private var labelAppearanceThreshold = CGFloat(0)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        automaticallyAdjustsScrollViewInsets = false
         view.addSubview(headerImageView)
         view.addSubview(tableView)
         view.addSubview(scrollingNavigationBar)
@@ -44,13 +46,14 @@ class ScrollingHeaderTableViewController: UIViewController {
         tableView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets.zero, excludingEdge: .top)
         tableView.autoPinEdge(.top, to: .bottom, of: scrollingNavigationBar)
         
-        headerImageView.image = UIImage(named: "bill-gates")
         headerImageView.contentMode = .scaleAspectFill
+        headerImageView.clipsToBounds = true
         
-        scrollingNavigationBar.titleLabel.text = "Nav bar"
         scrollingNavigationBar.backgroundColor = .clear
-        
         tableView.backgroundColor = .clear
+        
+        headerImageView.addSubview(visualEffectView)
+        visualEffectView.autoPinEdgesToSuperviewEdges()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,20 +66,17 @@ class ScrollingHeaderTableViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+    // If you want the header image views height to match the table headers height,
+    // then set the table headers frame in the subclasses viewWillLayoutSubviews()
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         let navbarheight = navigationBarHeight+statusBarHeight
-        let imageViewHeight = navbarheight * 1.5
         navigationBarHeightConstraint.constant = navbarheight
-        headerImageViewHeightConstraint.constant = imageViewHeight
         
-        let oldInset = tableView.contentInset.top
-        tableView.contentInset = UIEdgeInsets(top: imageViewHeight, left: 0, bottom: bottomLayoutGuide.length, right: 0)
-        
-        if oldInset == 0 {
-            tableView.contentOffset = CGPoint(x: 0, y: -imageViewHeight)
+        if let tableHeaderHeight = tableView.tableHeaderView?.frame.height {
+            let imageViewHeight = navbarheight + tableHeaderHeight
+            headerImageViewHeightConstraint.constant = imageViewHeight
         }
-        
     }
     
     func backButtonPressed() {
@@ -88,7 +88,40 @@ class ScrollingHeaderTableViewController: UIViewController {
     }
     
     func tableViewOffsetDidChange() {
-        scrollingNavigationBar.setTitleLabelOffset(offset: tableView.contentOffset.y)
+        let adjustedOffset = tableView.contentOffset.y - labelAppearanceThreshold
+        scrollingNavigationBar.updateTitlePositionAndBackgroundAlpha(withOffset: adjustedOffset)
+        updateHeaderImageTransform()
+    }
+    
+    func setTitleAppearanceContentOffset(_ offset: CGFloat) {
+        labelAppearanceThreshold = offset
+    }
+    
+    func setHeaderImageViewImage(_ image: UIImage?) {
+        headerImageView.image = image
+    }
+    
+    func setBackButtonHidden(_ isHidden: Bool) {
+        scrollingNavigationBar.backButton.isHidden = isHidden
+    }
+    
+    func setNavbarTitle(_ titleText: String?) {
+        scrollingNavigationBar.titleLabel.text = titleText
+    }
+    
+    private func updateHeaderImageTransform() {
+        let offset = tableView.contentOffset.y
+        var scale = CGFloat(1)
+        
+        if offset < 0 {
+            scale = fabs(offset / kHeaderScaleDamping) + 1.0
+        }
+        
+        headerImageView.transform = CGAffineTransform.init(scaleX: scale, y: scale)
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 
 }
