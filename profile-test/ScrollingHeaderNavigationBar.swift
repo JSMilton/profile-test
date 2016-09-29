@@ -11,7 +11,7 @@ import PureLayout
 
 class ScrollingHeaderNavigationBar: UIView {
     
-    @IBOutlet weak var settingsButton: UIButton!
+    @IBOutlet weak var rightButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet private weak var titleLabelBottomConstraint: NSLayoutConstraint!
@@ -52,7 +52,7 @@ class ScrollingHeaderNavigationBar: UIView {
     }
     
     func updateTitlePositionAndBackgroundAlpha(withOffset offset: CGFloat) {
-        var value = max(offset, 0)
+        var value = max(offset * -1, 0)
         value = min(value, titleLabelMaxOffset)
         
         titleLabelBottomConstraint.constant = value - titleLabelMaxOffset

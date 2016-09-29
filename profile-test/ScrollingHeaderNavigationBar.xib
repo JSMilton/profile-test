@@ -10,7 +10,7 @@
             <connections>
                 <outlet property="backButton" destination="fMF-ab-Rfa" id="WKK-xV-Jgx"/>
                 <outlet property="backgroundView" destination="sPE-85-phx" id="xCh-qM-FF6"/>
-                <outlet property="settingsButton" destination="l8k-nD-FcL" id="gza-wK-L6z"/>
+                <outlet property="rightButton" destination="l8k-nD-FcL" id="IcG-cm-0m9"/>
                 <outlet property="titleLabel" destination="1c8-rS-XY2" id="PPq-fC-5yN"/>
                 <outlet property="titleLabelBottomConstraint" destination="epu-8k-1ZP" id="0MV-LD-Lkt"/>
             </connections>
@@ -38,7 +38,7 @@
                     </constraints>
                     <state key="normal" image="back-icon"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l8k-nD-FcL">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l8k-nD-FcL" userLabel="Right Button">
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="Dn3-B7-Gk8"/>
                         <constraint firstAttribute="width" constant="44" id="FWA-vS-mvz"/>

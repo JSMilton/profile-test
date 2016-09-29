@@ -24,8 +24,11 @@ class TestViewController: ScrollingHeaderTableViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         if tableView.tableHeaderView == nil {
-            tableView.tableHeaderView = TestHeaderView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100))
-            setTitleAppearanceContentOffset(50)
+            let v = TestHeaderView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100))
+            tableView.tableHeaderView = v
+            
+            setHeaderHeightTrackingView(v.label)
+            setTitleOffsetTrackingView(v.label)
         }
     }
 

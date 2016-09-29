@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1A04F9071D9D4D1300EB5E4E /* TestHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A04F9061D9D4D1300EB5E4E /* TestHeaderView.swift */; };
+		1A04F9091D9D71B800EB5E4E /* ScrollingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A04F9081D9D71B800EB5E4E /* ScrollingHeaderView.swift */; };
 		81FCE6BE7060131C7B83482A /* Pods_profile_testTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B11EA803DF92DFE50396CC52 /* Pods_profile_testTests.framework */; };
 		88154093CA9000B3ED4A2FFA /* Pods_profile_test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37CEA5177FCEF8D6131420B0 /* Pods_profile_test.framework */; };
 		981A9A874286E9C2EBAF8376 /* Pods_profile_testUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C9D4727C9DD0B4BA58FD5D4 /* Pods_profile_testUITests.framework */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		0C9D4727C9DD0B4BA58FD5D4 /* Pods_profile_testUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_profile_testUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A04F9061D9D4D1300EB5E4E /* TestHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestHeaderView.swift; sourceTree = "<group>"; };
+		1A04F9081D9D71B800EB5E4E /* ScrollingHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollingHeaderView.swift; sourceTree = "<group>"; };
 		37CEA5177FCEF8D6131420B0 /* Pods_profile_test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_profile_test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CC913430E746DD7B2BCFE22 /* Pods-profile-testUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-profile-testUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-profile-testUITests/Pods-profile-testUITests.release.xcconfig"; sourceTree = "<group>"; };
 		593C81319F091DD6759B5489 /* Pods-profile-test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-profile-test.debug.xcconfig"; path = "Pods/Target Support Files/Pods-profile-test/Pods-profile-test.debug.xcconfig"; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				BE778FB01D9BF97C00A5E02C /* AppDelegate.swift */,
+				1A04F9081D9D71B800EB5E4E /* ScrollingHeaderView.swift */,
 				BE778FDE1D9BFB3700A5E02C /* ScrollingHeaderTableViewController.swift */,
 				BE778FE41D9C0C8500A5E02C /* ScrollingHeaderNavigationBar.swift */,
 				BE778FE61D9C164800A5E02C /* ScrollingHeaderNavigationBar.xib */,
@@ -441,6 +444,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE778FE51D9C0C8500A5E02C /* ScrollingHeaderNavigationBar.swift in Sources */,
+				1A04F9091D9D71B800EB5E4E /* ScrollingHeaderView.swift in Sources */,
 				1A04F9071D9D4D1300EB5E4E /* TestHeaderView.swift in Sources */,
 				BE778FE01D9BFB3700A5E02C /* ScrollingHeaderTableViewController.swift in Sources */,
 				BE778FE31D9C036200A5E02C /* TestViewController.swift in Sources */,
