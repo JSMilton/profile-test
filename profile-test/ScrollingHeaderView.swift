@@ -8,7 +8,7 @@
 
 import UIKit
 
-fileprivate let kHeaderScaleDamping = CGFloat(30)
+fileprivate let kHeaderOffsetScalar = CGFloat(60)
 
 class ScrollingHeaderView: UIView {
 
@@ -48,7 +48,7 @@ class ScrollingHeaderView: UIView {
     }
     
     func updateSpinner(_ offset: CGFloat) {
-        let scaledOffset = (offset / CGFloat(60)) * -1
+        let scaledOffset = (offset / kHeaderOffsetScalar) * -1
         loadingSpinner.alpha = scaledOffset
         loadingSpinner.transform = CGAffineTransform.init(rotationAngle: scaledOffset)
     }
