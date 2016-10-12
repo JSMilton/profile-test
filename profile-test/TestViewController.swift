@@ -9,6 +9,8 @@
 import UIKit
 
 class TestViewController: ScrollingHeaderTableViewController {
+    
+    var selectedTab = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,6 +18,8 @@ class TestViewController: ScrollingHeaderTableViewController {
         tableView.dataSource = self
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 44
         
         setHeaderImageViewImage(UIImage(named: "bill-gates"))
         setNavbarTitle("Awesome title")
@@ -31,6 +35,11 @@ class TestViewController: ScrollingHeaderTableViewController {
             setTitleOffsetTrackingView(v.label)
         }
     }
+    
+    override func rightBarButtonPressed() {
+        selectedTab = !selectedTab
+        tableView.reloadData()
+    }
 
 }
 
@@ -38,11 +47,21 @@ extension TestViewController: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         tableViewOffsetDidChange()
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let v = UIView()
+        v.backgroundColor = .blue
+        return v
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 45
+    }
 }
 
 extension TestViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 50
+        return selectedTab ? 30 : 20
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -55,6 +55,7 @@ class ScrollingHeaderTableViewController: UIViewController {
         }
         
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        scrollingNavigationBar.rightButton.addTarget(self, action: #selector(rightBarButtonPressed), for: .touchUpInside)
     }
     
     func handleRefresh(_ :UIRefreshControl) {
